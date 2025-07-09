@@ -30,52 +30,90 @@ const Toolbar = () => {
             className="h-[24px] w-[1px] mx-[8px]"
             style={{ backgroundColor: COLORS.BG_TERTIARY }}
           ></div>
-          <div className="flex items-center pl-[8px] pr-[12px] gap-[4px] mr-[4px]">
+          <button
+            onClick={() => {
+              console.log("Hide fields clicked!");
+            }}
+            className="flex items-center pl-[8px] pr-[12px] gap-[4px] mr-[4px] bg-transparent border-none cursor-pointer hover:bg-gray-100 hover:rounded-[8px] hover:py-2"
+            style={{ color: COLORS.TEXT_PRIMARY }}
+          >
             <img src={EyeIcon} alt="Eye icon" />
-            <p
-              className="text-sm leading-[20px]"
-              style={{ color: COLORS.TEXT_PRIMARY }}
-            >
-              Hide fields
-            </p>
-          </div>
-          <div className="flex items-center pl-[8px] pr-[12px] gap-[4px] mr-[4px]">
+            <span className="text-sm leading-[20px]">Hide fields</span>
+          </button>
+          <button
+            className="flex items-center pl-[8px] pr-[12px] gap-[4px] mr-[4px] bg-transparent border-none cursor-pointer hover:bg-gray-100 hover:rounded-[8px] hover:py-2"
+            onClick={() => {
+              console.log("Sorting the data...");
+            }}
+            style={{ color: COLORS.TEXT_PRIMARY }}
+          >
             <img src={SortIcon} alt="Sort icon" />
-            <p
+            <span
               className="text-sm leading-[20px]"
               style={{ color: COLORS.TEXT_PRIMARY }}
             >
               Sort
-            </p>
-          </div>
-          <div className="flex items-center pl-[8px] pr-[12px] gap-[4px] mr-[4px]">
+            </span>
+          </button>
+          <button
+            className="flex items-center pl-[8px] pr-[12px] gap-[4px] mr-[4px] bg-transparent border-none cursor-pointer hover:bg-gray-100 hover:rounded-[8px] hover:py-2"
+            onClick={() => {
+              console.log("Filter clicked!");
+            }}
+          >
             <img src={FilterIcon} alt="Filter icon" />
-            <p
+            <span
               className="text-sm leading-[20px]"
               style={{ color: COLORS.TEXT_PRIMARY }}
             >
               Filter
-            </p>
-          </div>
-          <div className="flex items-center pl-[8px] pr-[12px] gap-[4px]">
+            </span>
+          </button>
+          <button
+            className="flex items-center pl-[8px] pr-[12px] gap-[4px] bg-transparent border-none cursor-pointer hover:bg-gray-100 hover:rounded-[8px] hover:py-2"
+            onClick={() => {
+              console.log("Cell View pressed!");
+            }}
+          >
             <img src={AutoFitIcon} alt="Auto fit arrow icon" />
-            <p
-              className="text-sm leading-[20px]"
+            <span
+              className="text-sm leading-[20px] "
               style={{ color: COLORS.TEXT_PRIMARY }}
             >
               Cell View
-            </p>
-          </div>
+            </span>
+          </button>
         </div>
         <div className="flex items-center gap-[8px]">
-          <Button Icon={ImportIcon} Title="Import" />
-          <Button Icon={ExportIcon} Title="Export" />
-          <Button Icon={Share} Title="Share" />
+          <Button
+            Icon={ImportIcon}
+            Title="Import"
+            onClick={() => {
+              console.log("Import button clicked!");
+            }}
+          />
+          <Button
+            Icon={ExportIcon}
+            Title="Export"
+            onClick={() => {
+              console.log("Export button clicked!");
+            }}
+          />
+          <Button
+            Icon={Share}
+            Title="Share"
+            onClick={() => {
+              console.log("Share button clicked!");
+            }}
+          />
           <button
-            className="flex items-center justify-center px-[24px] py-[8px] gap-x-[4px] rounded-md text-sm font-medium leading-[20px]"
+            className="flex items-center justify-center px-[24px] py-[8px] gap-x-[4px] rounded-md text-sm font-medium leading-[20px] cursor-pointer"
             style={{
               backgroundColor: COLORS.BG_BRAND,
               color: COLORS.TEXT_WHITE,
+            }}
+            onClick={() => {
+              console.log("New Action Clicked!");
             }}
           >
             <span>

@@ -13,9 +13,10 @@ import PersonIcon from "../assets/Person.png";
 import DropdownIcon from "../assets/Dropdown.svg";
 import ChevronCircleIcon from "../assets/ChevronCircle.png";
 import Emoji from "../assets/Emoji.png";
+import DUMMY_DATA from "../constants/data";
 
 const SpreadSheet = () => {
-  const rowCount = 30;
+  const rowCount = 100;
   const columnCount = 10;
 
   const columnHeaders = [
@@ -41,6 +42,81 @@ const SpreadSheet = () => {
     },
   ]
 
+  const returnDummyData = (col: number, row: number) => {
+      const entry = DUMMY_DATA[row];
+
+      if (col === 0 || col === 3 || col === 5) {
+        return (
+          <p
+            className="text-xs leading-[16px] truncate"
+            style={{ color: COLORS.TEXT_PRIMARY }}
+          >
+            {col === 0 ? entry.jobRequest : col === 3 ? entry.submitter : entry.assigned}
+          </p>
+        );
+      } else if (col === 1 || col === 7) {
+        return (
+          <p
+            className="text-xs leading-[16px]"
+            style={{ color: COLORS.TEXT_PRIMARY }}
+          >
+            {col === 1 ? entry.submitted : entry.dueDate}
+          </p>
+        );
+      } else if (col === 2) {
+        return (
+          <p
+            className="text-xs leading-[16px] px-[8px] py-[4px] rounded-[100px] font-medium"
+            style={{
+              color: entry.status.text,
+              backgroundColor: entry.status.background,
+            }}
+          >
+            {entry.status.title}
+          </p>
+        );
+      } else if (col === 4) {
+        return (
+          <a
+            className="text-xs leading-[16px] underline truncate"
+            style={{
+              color: COLORS.TEXT_PRIMARY,
+            }}
+            href="#"
+          >
+            {entry.url}
+          </a>
+        );
+      } else if (col === 6) {
+        return (
+          <p
+            className="text-xs leading-[16px] font-semibold text-yellow-600"
+            style={
+              {
+                color: entry.priority === 'High' ? "#EF4D44" : entry.priority === "Low" ? "#1A8CFF" : "#C29210"
+              }
+            }
+          >
+            {entry.priority}
+          </p>
+        );
+      } else if (col === 8) {
+        return (
+          <p
+            className="text-xs leading-[16px] flex gap-2"
+            style={
+              {
+                color: COLORS.TEXT_PRIMARY,
+              }
+            }
+          >
+            {entry.estValue} <span className="font-medium text-[#AFAFAF]">&#8377;</span>
+          </p>
+        );
+      }
+  }
+  
+  
   return (
     <div
       className="grid gap-[1px] overflow-auto"
@@ -200,20 +276,33 @@ const SpreadSheet = () => {
           </div>
 
           {[...Array(columnCount)].map((_, colIndex) => {
+            const isDummy = rowIndex < 5;
             return (
               <div
                 key={`${rowIndex}-${colIndex}`}
-                className="group border border-transparent focus-within:border-[#6C8B70] focus-within:shadow-[0_0_4px_-2px_rgba(10,110,61,0.6),0_0_12px_0px_rgba(10,110,61,0.22)] text-xs leading-[16px] flex items-center px-[8px] transition-colors duration-150"
+                className={`${
+                  colIndex === 1 || colIndex === 7 || colIndex === 8
+                    ? `justify-end`
+                    : colIndex === 2 || colIndex === 6
+                    ? "justify-center"
+                    : "justify-left"
+                } group border border-transparent focus-within:border-[#6C8B70] focus-within:shadow-[0_0_4px_-2px_rgba(10,110,61,0.6),0_0_12px_0px_rgba(10,110,61,0.22)] text-xs leading-[16px] flex items-center px-[8px] transition-colors duration-150 `}
                 style={{
                   color: COLORS.TEXT_PRIMARY,
                   backgroundColor: COLORS.BG_PRIMARY,
                 }}
               >
-                <div
-                  contentEditable
-                  className="outline-none w-full"
-                  suppressContentEditableWarning={true}
-                ></div>
+                {isDummy ? (
+                  <div contentEditable className="outline-none truncate">
+                    {returnDummyData(colIndex, rowIndex)}
+                  </div>
+                ) : (
+                  <div
+                    contentEditable
+                    className="outline-none w-full"
+                    suppressContentEditableWarning={true}
+                  ></div>
+                )}
               </div>
             );})}
         </>

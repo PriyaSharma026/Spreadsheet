@@ -62,7 +62,12 @@ const Topbar = () => {
           />
         </div>
 
-        <div className="items-center justify-center p-[8px] relative">
+        <button
+          className="items-center justify-center p-[8px] relative hover:bg-gray-100 hover:rounded-[8px] py-2 cursor-pointer"
+          onClick={() => {
+            console.log("Notification clicked!");
+          }}
+        >
           <img src={Alert} alt="Alert Icon" />
           {/* notification dot with number */}
           <div
@@ -71,8 +76,13 @@ const Topbar = () => {
           >
             <span className="text-[10px] font-medium text-white">2</span>
           </div>
-        </div>
-        <div className="flex items-center gap-[8px] pl-[8px] pr-[12px]">
+        </button>
+        <button
+          className="flex items-center gap-[8px] pl-[8px] pr-[12px] hover:bg-gray-100 hover:rounded-[8px] py-2 cursor-pointer"
+          onClick={() => {
+            console.log("Profile clicked!");
+          }}
+        >
           <div>
             <img src={Profile} alt="Profile picture" />
           </div>
@@ -90,7 +100,7 @@ const Topbar = () => {
               john.doe...
             </p>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );

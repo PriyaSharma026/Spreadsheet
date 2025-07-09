@@ -16,6 +16,13 @@ const Statusbar = () => {
 
     const inactiveStyle = { color: COLORS.TEXT_TERTIARY };
 
+    function handleTabChange(key: string) {
+      if (key === "All Orders") console.log("Opening All Orders...");
+      else if (key === "Pending") console.log("Opening Pending...");
+      else if (key === "Reviewed") console.log("Opening Reviewed...");
+      else if (key === "Arrived") console.log("Opening Arrived...");
+    }
+
     return (
       <div
         className="h-[48px] sticky bottom-0 px-[32px] flex items-end"
@@ -24,17 +31,20 @@ const Statusbar = () => {
         {statuses.map(({ label, key }) => (
           <button
             key={key}
-            className="h-[44px] px-[16px] font-medium flex items-center text-base leading-[24px]"
+            className="h-[44px] px-[16px] font-medium flex items-center text-base leading-[24px] cursor-pointer"
             style={activeStatus === key ? activeStyle : inactiveStyle}
-            onClick={() => setActiveStatus(key)}
+            onClick={() => {
+              setActiveStatus(key);
+              handleTabChange(key);
+            }}
           >
             {label}
           </button>
         ))}
-        
+
         <button
-          className="h-[44px] px-[8px] flex items-center"
-          style={{ color: COLORS.TEXT_TERTIARY }}
+          className="h-[44px] px-[8px] flex items-center cursor-pointer"
+          onClick={() => console.log("Add new sheet...")}
         >
           <img src={AddIcon} />
         </button>
