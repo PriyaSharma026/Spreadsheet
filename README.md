@@ -19,12 +19,12 @@ This project replicates a spreadsheet-like interface, similar to Google Sheets, 
 - ESLint + Prettier for linting
 - TypeScript for type safety
 
+## Live Demo Link
+
+https://spreadsheet-neon.vercel.app/
+
 ## Getting Started
 
 ```bash
 npm install
 npm run dev
-
-## Live Demo Link
-
-https://spreadsheet-neon.vercel.app/
